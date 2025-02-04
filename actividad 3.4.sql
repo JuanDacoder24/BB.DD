@@ -61,10 +61,10 @@ insert into Carrera values('1','MALIAÑO','PEÑACASTILLO',7.50,'NO','11111111H',
 
 select Taxi.matricula, marca, modelo, DNI_NIE, nombre, apellidos from Taxi inner join Conductor where Taxi.matricula = Conductor.matricula;
 
-select origen, destino, matricula, clientes_discapacitados from Carrera inner join Taxi where Taxi = matricula;
+select c.origen, c.destino, t.matricula, t.clientes_discapacitados from Carrera c inner join Taxi t where t.matricula = c.matricula;
 
 select nombre, apellidos,DNI_NIE, marca, modelo, Taxi.matricula, num_pasajeros from Conductor inner join Taxi where Conductor.matricula = Taxi.matricula order by nombre;
 
 select marca, modelo, num_pasajeros, clientes_discapacitados from Taxi left join Conductor on Taxi.matricula = Conductor.matricula UNION select DNI_NIE, nombre, apellidos, direccion from Taxi right join Conductor on Conductor.matricula = Taxi.matricula;
 
-select matricula, marca, modelo, num_pasajeros, clientes_discapacitados from Taxi left join Carrera on matricula = Taxi union select cod_carrera, origen, destino, precio, turno from Taxi right join Carrera on matricula = Taxi;
+select t.matricula, t.marca, t.modelo, t.num_pasajeros, t.clientes_discapacitados from Taxi t left join Carrera c on t.matricula = c.matricula union select t.matricula, t.marca, t.modelo, t.num_pasajeros, t.clientes_discapacitados from Taxi t left join Carrera c on t.matricula = c.matricula;
